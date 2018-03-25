@@ -21,12 +21,10 @@ public:
 
 int max(int i,int j) {return (i>j)?i:j;}
 
-int treeheight (Node* tree)
-{ 
+int treeheight (Node* tree){ 
 	if(!tree->children.size()) return 1;
 	int height = 0;
-	for(int i=0 ; i<tree->children.size() ; ++i)
-	{
+	for(int i=0 ; i<tree->children.size() ; ++i){
 		height = max( height , treeheight( tree->children[i] ) );
 	}
 	return height+1;
@@ -34,35 +32,17 @@ int treeheight (Node* tree)
 
 int main() {
 
-  int n,root;
+  int n,root,j;
   cin >> n;
-
   vector<Node> tree(n);
-  
-
-  for (int i = 0 ; i<n ; ++i)
-  {
-	  int j;
+  for (int i = 0 ; i<n ; ++i){
 	  cin>> j ;
+	  tree[i].key=i;
 	  if(j==-1)
-	  {
-		  tree[i].key=i;
 		  root = i;
-	  }
 	  else
-	  {
-		  tree[i].key=i;
 		  tree[i].setParent(&tree[j]);
-		  /*
-		  Node x;
-		  x.key = i;
-		  x.setParent(&tree[j]);
-		  tree.push_back(x) ;
-		  */
-	  }
   }
-
   cout << treeheight(&tree[root]);
-
   return 0;
 }
